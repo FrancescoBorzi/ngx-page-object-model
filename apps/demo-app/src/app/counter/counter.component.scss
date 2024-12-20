@@ -1,0 +1,18 @@
+.main-wrapper {
+
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 20px;
+
+
+  button, span {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  span {
+    font-size: 20px;
+  }
+}

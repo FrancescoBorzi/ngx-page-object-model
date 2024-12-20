@@ -1,1 +1,3 @@
-export * from './lib/ngx-page-object-model/ngx-page-object-model.component';
+export * from './lib/debug-html-element';
+export * from './lib/get-form-control-of-debug-element';
+export * from './lib/page-object-model';
