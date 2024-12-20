@@ -1,7 +1,7 @@
 {
   "name": "ngx-page-object-model",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "ngx-page-object-model/src",
+  "sourceRoot": "libs/ngx-page-object-model/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": [],
@@ -10,14 +10,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "ngx-page-object-model/ng-package.json"
+        "project": "libs/ngx-page-object-model/ng-package.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "ngx-page-object-model/tsconfig.lib.prod.json"
+          "tsConfig": "libs/ngx-page-object-model/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "ngx-page-object-model/tsconfig.lib.json"
+          "tsConfig": "libs/ngx-page-object-model/tsconfig.lib.json"
         }
       },
       "defaultConfiguration": "production"
