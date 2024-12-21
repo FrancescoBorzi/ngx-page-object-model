@@ -1,8 +1,11 @@
 {
   "name": "@ngx-page-object-model/source",
-  "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "copy-readme": "cp README.md libs/ngx-page-object-model/dist",
+    "build": "nx build ngx-page-object-model && npm run copy-readme",
+    "publish": "cd libs/ngx-page-object-model/dist && npm publish"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~19.0.0",
