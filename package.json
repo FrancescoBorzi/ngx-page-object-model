@@ -50,7 +50,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-preset-angular": "~14.4.0",
-    "jsdom": "~22.1.0",
+    "jsdom": "~25.0.0",
     "jsonc-eslint-parser": "^2.1.0",
     "ng-packagr": "~19.0.0",
     "nx": "20.3.0",
