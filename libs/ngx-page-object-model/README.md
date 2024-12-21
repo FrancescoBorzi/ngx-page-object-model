@@ -1,1 +1,0 @@
-# ngx-page-object-model
