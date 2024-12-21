@@ -1,6 +1,5 @@
 {
   "name": "@ngx-page-object-model/source",
-  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "copy-readme": "cp README.md libs/ngx-page-object-model/dist",
