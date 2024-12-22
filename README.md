@@ -101,3 +101,12 @@ The methods provided by `ngx-page-object-model`, such as `getDebugElementByCss()
 > Element with selector "#some-selector" was not found.
 
 This makes debugging a lot smoother, helping you quickly spot and fix broken CSS selectors or incorrect `data-testid` values.
+
+### Expect an element to not be there
+
+When you explicitly expect an element to NOT be present, you can pass `false` to silence the default assertion error:
+
+```typescript
+  // For some reasons I need to assert that the count element is not present in the DOM
+  expect(page.getCount(false)).not.toBeDefined();
+```
