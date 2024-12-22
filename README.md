@@ -12,6 +12,11 @@ By using the Page Object Model design pattern, you can create a new abstraction 
 In this example, direct interaction with the DOM happens within the test itself, leading to repetition and less focus on the test logic:
 
 ```typescript
+beforeEach(async () => {
+  // ...
+  fixture = TestBed.createComponent(CounterComponent);
+});
+
 it('should increase the counter when clicking on the increase button', () => {
   fixture.debugElement.query(By.css(`#increase-btn`)).nativeElement.click();
 
@@ -51,18 +56,24 @@ class CounterPage extends PageObjectModel<CounterComponent> {
 The test code is now cleaner, more focused, and avoids repetitive DOM manipulation:
 
 ```typescript
-  it('should increase the counter when clicking on the increase button', () => {
-    page.clickIncreaseButton();
+beforeEach(async () => {
+  // ...
+  fixture = TestBed.createComponent(CounterComponent);
+  page = new CounterPage(fixture);
+});
 
-    expect(page.getCount().nativeElement.innerHTML).toEqual('0');
-  });
+it('should increase the counter when clicking on the increase button', () => {
+  page.clickIncreaseButton();
 
-  it('should decrease the counter if the current value is greater than 0 when clicking on the decrease button', () => {
-    page.clickIncreaseButton();
-    page.clickIncreaseButton();
+  expect(page.getCount().nativeElement.innerHTML).toEqual('0');
+});
 
-    page.clickDecreaseButton();
+it('should decrease the counter if the current value is greater than 0 when clicking on the decrease button', () => {
+  page.clickIncreaseButton();
+  page.clickIncreaseButton();
 
-    expect(page.getCount().nativeElement.innerHTML).toEqual('0');
-  });
+  page.clickDecreaseButton();
+
+  expect(page.getCount().nativeElement.innerHTML).toEqual('0');
+});
 ```
