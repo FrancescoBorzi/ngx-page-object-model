@@ -7,6 +7,8 @@ It can be used alongside tools like [Spectator](https://ngneat.github.io/spectat
 
 By using the Page Object Model design pattern, you can create a new abstraction and separate your test logic from the logic to read and manipulate the DOM.
 
+## Basic examples
+
 ### Example of tests without Page Object Model
 
 In this minimalistic example, direct interaction with the DOM happens within the test itself, leading to repetition and more complex code:
@@ -88,7 +90,7 @@ it('should decrease the counter if the current value is greater than 0 when clic
 });
 ```
 
-### More developer-friendly errors
+## More developer-friendly errors
 
 When using Angular default methods, running into a typo in a selector usually gives you an error like this:
 
