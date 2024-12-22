@@ -104,9 +104,9 @@ This makes debugging a lot smoother, helping you quickly spot and fix broken CSS
 
 ### Expect an element to not be there
 
-When you explicitly expect an element to NOT be present, you can pass `false` to silence the default assertion error:
+If you want to explicitly check that an element is not present in the DOM, you can pass `false` to disable the default assertion error:
 
 ```typescript
-  // For some reasons I need to assert that the count element is not present in the DOM
+  // Assert that the count element is not present in the DOM
   expect(page.getCount(false)).not.toBeDefined();
 ```
