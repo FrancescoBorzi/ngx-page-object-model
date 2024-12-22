@@ -9,7 +9,7 @@ By using the Page Object Model design pattern, you can create a new abstraction 
 
 ### Example of tests without Page Object Model
 
-In this example, direct interaction with the DOM happens within the test itself, leading to repetition and less focus on the test logic:
+In this minimalistic example, direct interaction with the DOM happens within the test itself, leading to repetition and more complex code:
 
 ```typescript
 beforeEach(async () => {
@@ -35,20 +35,28 @@ it('should decrease the counter if the current value is greater than 0 when clic
 
 ### Example of tests using the Page Object Model
 
-With the Page Object Model pattern, the logic to interact with the DOM is encapsulated within a dedicated page object. This makes tests more readable and reduces code duplication. The page object is simply a class extending PageObjectModel:
+With the Page Object Model pattern, the logic to interact with the DOM is encapsulated within a dedicated page object.
+This approach makes tests more readable, ensures accurate typing for HTML elements, and reduces code duplication. The page object is simply a class extending `PageObjectModel`:
 
 ```typescript
-import { PageObjectModel } from 'ngx-page-object-model';
+import { DebugHtmlElement, PageObjectModel } from 'ngx-page-object-model';
 
 class CounterPage extends PageObjectModel<CounterComponent> {
-  getIncreaseButton(): DebugElement {
-    return this.getDebugElementByCss('#increase-btn');
+  getIncreaseButton(): DebugHtmlElement<HTMLButtonElement> {
+    return this.getDebugElementByTestId('increase');
   }
-  getDecreaseButton(): DebugElement {
-    return this.getDebugElementByCss('#decrease-btn');
+  getDecreaseButton(): DebugHtmlElement<HTMLButtonElement> {
+    return this.getDebugElementByTestId('decrease');
   }
-  getCount(): DebugElement {
+  getCount(): DebugHtmlElement<HTMLSpanElement> {
     return this.getDebugElementByTestId('count');
+  }
+
+  clickIncreaseButton(): void {
+    this.getIncreaseButton().nativeElement.click();
+  }
+  clickDecreaseButton(): void {
+    this.getDecreaseButton().nativeElement.click();
   }
 }
 ```
