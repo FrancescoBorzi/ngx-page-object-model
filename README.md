@@ -33,6 +33,8 @@ it('should decrease the counter if the current value is greater than 0 when clic
 });
 ```
 
+When trying to operate on an element using the wrong selector
+
 ### Example of tests using the Page Object Model
 
 With the Page Object Model pattern, the logic to interact with the DOM is encapsulated within a dedicated page object.
@@ -43,10 +45,10 @@ import { DebugHtmlElement, PageObjectModel } from 'ngx-page-object-model';
 
 class CounterPage extends PageObjectModel<CounterComponent> {
   getIncreaseButton(): DebugHtmlElement<HTMLButtonElement> {
-    return this.getDebugElementByTestId('increase');
+    return this.getDebugElementByCss('#increase-btn');
   }
   getDecreaseButton(): DebugHtmlElement<HTMLButtonElement> {
-    return this.getDebugElementByTestId('decrease');
+    return this.getDebugElementByCss('#decrease-btn');
   }
   getCount(): DebugHtmlElement<HTMLSpanElement> {
     return this.getDebugElementByTestId('count');
@@ -85,3 +87,15 @@ it('should decrease the counter if the current value is greater than 0 when clic
   expect(page.getCount().nativeElement.innerHTML).toEqual('0');
 });
 ```
+
+### More developer-friendly errors
+
+When using Angular default methods, running into a typo in a selector usually gives you an error like this:
+
+> TypeError: Cannot read properties of null (reading 'nativeElement')
+
+The methods provided by `ngx-page-object-model`, such as `getDebugElementByCss()` and `getDebugElementByTestId()`, are instead designed to produce clearer and more descriptive error messages:
+
+> Element with selector "#some-selector" was not found.
+
+This makes debugging a lot smoother, helping you quickly spot and fix broken CSS selectors or incorrect `data-testid` values.
