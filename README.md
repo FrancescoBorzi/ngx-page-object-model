@@ -35,8 +35,6 @@ it('should decrease the counter if the current value is greater than 0 when clic
 });
 ```
 
-When trying to operate on an element using the wrong selector
-
 ### Example of tests using the Page Object Model
 
 With the Page Object Model pattern, the logic to interact with the DOM is encapsulated within a dedicated page object.
@@ -77,7 +75,7 @@ beforeEach(async () => {
 it('should increase the counter when clicking on the increase button', () => {
   page.clickIncreaseButton();
 
-  expect(page.getCount().nativeElement.innerHTML).toEqual('0');
+  expect(page.getCount().nativeElement.innerHTML).toEqual('1');
 });
 
 it('should decrease the counter if the current value is greater than 0 when clicking on the decrease button', () => {
