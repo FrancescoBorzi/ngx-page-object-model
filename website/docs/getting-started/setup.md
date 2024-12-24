@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Setup and basic example
@@ -113,7 +113,7 @@ class MinimalComponentPOM extends PageObjectModel<MinimalComponent> {
   button(): DebugHtmlElement<HTMLButtonElement> {
     return this.getDebugElementByCss('button');
   }
-  text(): DebugHtmlElement<HTMLButtonElement> {
+  text(): DebugHtmlElement<HTMLSpanElement> {
     return this.getDebugElementByCss('span');
   }
 
@@ -186,3 +186,5 @@ Furthermore, if we mistype any CSS selector, we would get a much more dev-friend
 > Element with selector "#selector-with-typo" was not found.
 
 This could save us quite some time while debugging.
+
+_The full source code of this example can be found [here](https://github.com/FrancescoBorzi/ngx-page-object-model/blob/main/apps/demo-app/src/app/minimal/minimal.component.pom.spec.ts)._

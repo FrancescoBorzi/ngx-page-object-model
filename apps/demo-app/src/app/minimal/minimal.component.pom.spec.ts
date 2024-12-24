@@ -9,7 +9,7 @@ describe(MinimalComponent.name, () => {
     button(): DebugHtmlElement<HTMLButtonElement> {
       return this.getDebugElementByCss('button');
     }
-    text(): DebugHtmlElement<HTMLButtonElement> {
+    text(): DebugHtmlElement<HTMLSpanElement> {
       return this.getDebugElementByCss('span');
     }
 
