@@ -11,10 +11,17 @@ export abstract class PageObjectModel<ComponentType> {
     return `[data-testid="${testId}"]`;
   }
 
+  /**
+   * Calls fixture.detectChanges()
+   */
   detectChanges(): void {
     this.fixture.detectChanges();
   }
 
+  /**
+   * Given a CSS selector, returns a DebugHtmlElement.
+   * Takes an optional assert parameter which defaults to true.
+   */
   getDebugElementByCss<HTMLElementType extends HTMLElement = HTMLElement>(
     cssSelector: string,
     assert = true,
@@ -28,6 +35,10 @@ export abstract class PageObjectModel<ComponentType> {
     return debugElement;
   }
 
+  /**
+   * Given a data-testid, returns a DebugHtmlElement.
+   * Takes an optional assert parameter which defaults to true.
+   */
   getDebugElementByTestId<HTMLElementType extends HTMLElement = HTMLElement>(
     testId: string,
     assert = true,
@@ -35,6 +46,10 @@ export abstract class PageObjectModel<ComponentType> {
     return this.getDebugElementByCss(this.getSelectorByTestId(testId), assert);
   }
 
+  /**
+   * Given directive (e.g. a ComponentType), returns a DebugHtmlElement items.
+   * Takes an optional assert parameter which defaults to true.
+   */
   getDebugElementByDirective<HTMLElementType extends HTMLElement = HTMLElement>(
     directive: Type<unknown>,
     assert = true,
@@ -48,20 +63,33 @@ export abstract class PageObjectModel<ComponentType> {
     return debugElement;
   }
 
+  /**
+   * Given a CSS selector, returns an array of all matching DebugHtmlElement items.
+   */
   getAllDebugElementsByCss<HTMLElementType extends HTMLElement = HTMLElement>(cssSelector: string): DebugHtmlElement<HTMLElementType>[] {
     return this.fixture.debugElement.queryAll(By.css(cssSelector));
   }
 
+  /**
+   * Given a data-testid, returns an array of all matching DebugHtmlElement items.
+   */
   getAllDebugElementsByTestId<HTMLElementType extends HTMLElement = HTMLElement>(testId: string): DebugHtmlElement<HTMLElementType>[] {
     return this.getAllDebugElementsByCss(this.getSelectorByTestId(testId));
   }
 
+  /**
+   * Given directive (e.g. a ComponentType), returns an array of all matching DebugHtmlElement items.
+   */
   getAllDebugElementsByDirective<HTMLElementType extends HTMLElement = HTMLElement>(
     directive: Type<unknown>,
   ): DebugHtmlElement<HTMLElementType>[] {
     return this.fixture.debugElement.queryAll(By.directive(directive));
   }
 
+  /**
+   * Given a CSS selector, returns a native HTML element.
+   * Takes an optional assert parameter which defaults to true.
+   */
   query<T extends HTMLElement>(cssSelector: string, assert = true): T {
     const element: T = this.fixture.nativeElement.querySelector(cssSelector);
 
@@ -72,10 +100,16 @@ export abstract class PageObjectModel<ComponentType> {
     return element;
   }
 
+  /**
+   * Given a CSS selector, returns an array containing all the matching native HTML elements.
+   */
   queryAll<T extends HTMLElement>(selector: string): T[] {
     return this.fixture.nativeElement.querySelectorAll(selector);
   }
 
+  /**
+   * Removes the HTML element of the component from the DOM.
+   */
   removeNativeElement(): void {
     this.fixture.debugElement.nativeElement.remove();
   }
