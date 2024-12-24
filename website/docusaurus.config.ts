@@ -51,7 +51,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'ngx-page-object-model',
       logo: {
@@ -77,9 +77,12 @@ const config: Config = {
       links: [],
       copyright: `The <a href="https://github.com/FrancescoBorzi/ngx-page-object-model">ngx-page-object-model</a> library is open-source software released by <a href="https://nl.linkedin.com/in/francesco-borzi">Francesco Borzì</a> under the <a href="https://github.com/FrancescoBorzi/ngx-page-object-model/blob/main/LICENSE">MIT license</a>.`,
     },
+    colorMode: {
+      defaultMode: 'dark',
+    },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.vsDark,
     },
   } satisfies Preset.ThemeConfig,
 };
