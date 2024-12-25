@@ -32,7 +32,9 @@ export class CustomTextInputComponent implements ControlValueAccessor {
   // the outside consumers of this component in order to signal
   // when the form control has been touched
   // and/or its value has been changed.
+  // eslint-disable-next-line
   onChange: (value: string) => unknown = (_value: string) => {};
+  // eslint-disable-next-line
   onTouched: () => unknown = () => {};
 
   // If you need to access the FormControl object from inside the component

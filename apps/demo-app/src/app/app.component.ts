@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {CounterComponent} from "./counter/counter.component";
-import { FormExampleComponent } from './form/form-example.component';
 
 @Component({
   imports: [RouterModule, CounterComponent],
