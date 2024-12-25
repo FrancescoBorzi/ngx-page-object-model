@@ -6,7 +6,7 @@ sidebar_position: 3
 
 If you want to use `ngx-page-object-model` together with [Spectator](https://ngneat.github.io/spectator/), they can run together smoothly.
 
-## Simple setup: decoupled page object and spectator
+## Simple setup: decoupled
 
 The simplest way is to just pass `spectator.fixture` when instantiating your page object:
 
