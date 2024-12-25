@@ -75,7 +75,7 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [],
-      copyright: `The <a href="https://github.com/FrancescoBorzi/ngx-page-object-model">ngx-page-object-model</a> library is open-source software released by <a href="https://nl.linkedin.com/in/francesco-borzi">Francesco Borzì</a> under the <a href="https://github.com/FrancescoBorzi/ngx-page-object-model/blob/main/LICENSE">MIT license</a>.`,
+      copyright: `The <a href="https://github.com/FrancescoBorzi/ngx-page-object-model">ngx-page-object-model</a> library is open-source software released by <a href="https://nl.linkedin.com/in/francesco-borzi">Francesco Borzì</a> under the <a href="https://github.com/FrancescoBorzi/ngx-page-object-model/blob/main/LICENSE">MIT license</a>. Documentation website generated with <a href="https://docusaurus.io/">Docusaurus</a>.`,
     },
     colorMode: {
       defaultMode: 'dark',
