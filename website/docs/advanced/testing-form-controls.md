@@ -26,7 +26,7 @@ const setup = () => {
 
 it('should do something', () => {
   const { page, formControl } = setup();
-  // here we have access to the formControl that is passed as input inside the MyCustomInputTextComponent
+  // we have access to the formControl that is passed as input inside the MyCustomInputTextComponent
 });
 ```
 
@@ -61,10 +61,13 @@ Now suppose that we want to write a unit test for this component where the inner
 How can we access the `formControl`?
 
 You might be tempted to just declare it `public`, but that would go against the [encapsulation](./best-practices/encapsulation) principle.
-Also, even if we declared that as `public` and access it directly using `component.formControl` in our test, that would only allow us to test its value initialization,
-but not the part where we correctly pass it to the `<app-custom-text-input>` element. In other words, we wouldn't be testing our component template but only its class.
+Another possible approach would be using an ugly type hack like `(page.fixture.componentInstance as any)['formControl']`.
 
-To solve this, the `ngx-page-object-model` library provides a `getFormControlOfDebugElement()` method that, given a debug element, it returns the `[formControl]` bound to it:
+However, both these hacky approaches would only allow us to test the control value initialization, 
+not the part where we correctly pass it to the `<app-custom-text-input>` element.
+**In other words, we wouldn't be testing our component template but only its class.**
+
+To solve this issue properly and avoid hacky solutions, the `ngx-page-object-model` library provides a `getFormControlOfDebugElement()` method that, given a debug element, it returns the `[formControl]` bound to it:
 
 ```typescript
 getFormControlOfDebugElement(debugElement: DebugHtmlElement, assert = true): AbstractControl
@@ -99,8 +102,6 @@ it('should initialize a formControl and pass it to the <app-custom-text-input> c
 This way we access the `formControl` object from the DOM instead of the Component's class.
 By doing so we are implicitly testing that it is correctly bound to the `<app-custom-text-input>` element 
 and then we check its value by simply calling `formControl.value`.
-
-Cool, right?
 
 The full test code looks like this:
 
