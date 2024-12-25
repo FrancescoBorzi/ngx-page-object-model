@@ -60,7 +60,7 @@ What this component does is quite simple:
 Now suppose that we want to write a unit test for this component where the inner `<app-custom-text-input>` is mocked.
 How can we access the `formControl`?
 
-You might be tempted to just declare it `public`, but that would go against the [encapsulation](./best-practices/encapsulation) principle.
+You might be tempted to just declare it `public`, but that would go against the [encapsulation](../best-practices/encapsulation) principle.
 Another possible approach would be using an ugly type hack like `(page.fixture.componentInstance as any)['formControl']`.
 
 However, both these hacky approaches would only allow us to test the control value initialization, 
