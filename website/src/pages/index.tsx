@@ -32,8 +32,8 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`Homepage`}
+      description="Angular Component Tests made easy">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
