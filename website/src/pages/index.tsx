@@ -33,7 +33,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Homepage`}
-      description="Angular Component Tests made easy">
+      description="Elegant unit testing for Angular UI Components">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

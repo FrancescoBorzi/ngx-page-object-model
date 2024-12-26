@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'ngx-page-object-model',
-  tagline: 'Angular Component Tests made easy',
+  tagline: 'Elegant unit testing for Angular UI Components',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
