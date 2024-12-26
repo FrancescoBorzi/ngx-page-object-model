@@ -7,6 +7,10 @@ By using the Page Object Model design pattern, you can create a new abstraction 
 This library is fully Angular-based and completely testing-framework-agnostic, making it compatible with [Jasmine](https://jasmine.github.io/), [Jest](https://jestjs.io/), [Vitest](https://vitest.dev/), or any other unit testing framework. 
 It can be used alongside tools like [Spectator](https://ngneat.github.io/spectator/) or as a standalone solution.
 
+## Documentation and setup instructions
+
+- https://francescoborzi.github.io/ngx-page-object-model
+
 ## Basic examples
 
 ### Example of tests without Page Object Model
