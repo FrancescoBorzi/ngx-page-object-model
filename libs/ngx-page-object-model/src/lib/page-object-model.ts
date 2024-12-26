@@ -87,6 +87,17 @@ export abstract class PageObjectModel<ComponentType> {
   }
 
   /**
+   * Given an array of data-testid, returns the matching nested DebugHtmlElement item.
+   */
+  getDebugElementByNestedTestIds<HTMLElementType extends HTMLElement = HTMLElement>(
+    testIds: string[],
+    assert = true,
+  ): DebugHtmlElement<HTMLElementType> {
+    const selector = testIds.map((testId) => this.getSelectorByTestId(testId)).join(' ');
+    return this.getDebugElementByCss(selector, assert);
+  }
+
+  /**
    * Given a CSS selector, returns a native HTML element.
    * Takes an optional assert parameter which defaults to true.
    */
