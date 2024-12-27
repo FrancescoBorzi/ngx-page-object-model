@@ -50,8 +50,11 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    // image: 'img/docusaurus-social-card.jpg',
+    announcementBar: {
+      id: 'give-a-start',
+      content:
+        'If you like <strong>ngx-page-object-model</strong> please support it with a Star ⭐ on <a target="_blank" rel="noopener noreferrer" href="https://github.com/FrancescoBorzi/ngx-page-object-model">GitHub</a>.',
+    },
     navbar: {
       title: 'ngx-page-object-model',
       logo: {
