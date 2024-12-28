@@ -9,12 +9,16 @@ ngx-page-object-model is a lightweight library designed to simplify writing [uni
 
 By using the Page Object Model design pattern, you can create a new abstraction level and keep your test logic separated from the logic to read and manipulate the DOM.
 
-This library is fully Angular-based and completely testing-framework-agnostic, making it compatible with [Jasmine](https://jasmine.github.io/), [Jest](https://jestjs.io/), [Vitest](https://vitest.dev/), or any other unit testing framework. 
+This library is fully Angular-based and completely testing-framework-agnostic, making it compatible with [Jasmine](https://jasmine.github.io/), [Jest](https://jestjs.io/), [Vitest](https://vitest.dev/), or any other unit testing framework.
 It can be used alongside tools like [Spectator](https://ngneat.github.io/spectator/) or as a standalone solution.
 
-## Documentation and setup instructions
+## Setup
 
-- https://francescoborzi.github.io/ngx-page-object-model
+```
+npm install -D ngx-page-object-model
+```
+
+- Check the [Documentation](https://francescoborzi.github.io/ngx-page-object-model) for more details
 
 ## Basic examples
 
@@ -114,6 +118,10 @@ This makes debugging a lot smoother, helping you quickly spot and fix broken CSS
 If you want to explicitly check that an element is not present in the DOM, you can pass `false` to disable the default assertion error:
 
 ```typescript
-  // Assert that the count element is not present in the DOM
-  expect(page.getCount(false)).not.toBeDefined();
+// Assert that the count element is not present in the DOM
+expect(page.getCount(false)).not.toBeDefined();
 ```
+
+## Documentation
+
+- Check the [Documentation](https://francescoborzi.github.io/ngx-page-object-model) for more code examples, features and techniques.

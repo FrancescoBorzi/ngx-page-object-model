@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {CounterComponent} from "./counter/counter.component";
+import { CounterComponent } from './counter/counter.component';
 
 @Component({
   imports: [RouterModule, CounterComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'demo-app';
-}
+export class AppComponent {}
