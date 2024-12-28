@@ -6,10 +6,10 @@ describe(ToggleStyleComponent.name, () => {
   class Page extends PageObjectModel<ToggleStyleComponent> {
     // define elements access methods
     textContainer(): DebugHtmlElement<HTMLDivElement> {
-      return this.getDebugElementByTestId<HTMLDivElement>('text-container');
+      return this.getDebugElementByTestId('text-container');
     }
     toggleButton(): DebugHtmlElement<HTMLButtonElement> {
-      return this.getDebugElementByTestId<HTMLButtonElement>('toggle-dark-mode-button');
+      return this.getDebugElementByTestId('toggle-dark-mode-button');
     }
 
     // define action methods
@@ -17,20 +17,23 @@ describe(ToggleStyleComponent.name, () => {
       return this.textContainer().nativeElement.textContent;
     }
     clickToggleMode(): void {
-      return this.toggleButton().nativeElement.click();
+      this.toggleButton().nativeElement.click();
+      this.detectChanges();
     }
 
     // define reusable expect macros
     expectLightModeActive(): void {
-      expect(this.textContainer().nativeElement.classList).toContain('light');
-      expect(this.textContainer().nativeElement.classList).not.toContain('dark');
+      const containerClass = this.textContainer().nativeElement.classList;
+      expect(containerClass).toContain('light');
+      expect(containerClass).not.toContain('dark');
       expect(this.toggleButton().nativeElement.textContent).toContain(
         'Switch to Dark Mode',
       );
     }
     expectDarkModeActive(): void {
-      expect(this.textContainer().nativeElement.classList).toContain('dark');
-      expect(this.textContainer().nativeElement.classList).not.toContain('light');
+      const containerClass = this.textContainer().nativeElement.classList;
+      expect(containerClass).toContain('dark');
+      expect(containerClass).not.toContain('light');
       expect(this.toggleButton().nativeElement.textContent).toContain(
         'Switch to Light Mode',
       );
@@ -72,7 +75,6 @@ describe(ToggleStyleComponent.name, () => {
     page.detectChanges();
 
     page.clickToggleMode();
-    page.detectChanges();
 
     // this now fully checks all Dark Mode props
     page.expectDarkModeActive();
