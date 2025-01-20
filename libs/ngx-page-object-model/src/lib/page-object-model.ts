@@ -66,14 +66,18 @@ export abstract class PageObjectModel<ComponentType> {
   /**
    * Given a CSS selector, returns an array of all matching DebugHtmlElement items.
    */
-  getAllDebugElementsByCss<HTMLElementType extends HTMLElement = HTMLElement>(cssSelector: string): DebugHtmlElement<HTMLElementType>[] {
+  getAllDebugElementsByCss<HTMLElementType extends HTMLElement = HTMLElement>(
+    cssSelector: string,
+  ): DebugHtmlElement<HTMLElementType>[] {
     return this.fixture.debugElement.queryAll(By.css(cssSelector));
   }
 
   /**
    * Given a data-testid, returns an array of all matching DebugHtmlElement items.
    */
-  getAllDebugElementsByTestId<HTMLElementType extends HTMLElement = HTMLElement>(testId: string): DebugHtmlElement<HTMLElementType>[] {
+  getAllDebugElementsByTestId<HTMLElementType extends HTMLElement = HTMLElement>(
+    testId: string,
+  ): DebugHtmlElement<HTMLElementType>[] {
     return this.getAllDebugElementsByCss(this.getSelectorByTestId(testId));
   }
 
@@ -84,6 +88,13 @@ export abstract class PageObjectModel<ComponentType> {
     directive: Type<unknown>,
   ): DebugHtmlElement<HTMLElementType>[] {
     return this.fixture.debugElement.queryAll(By.directive(directive));
+  }
+
+  /**
+   * Given a component type, returns the component instance.
+   */
+  getComponentInstance<T>(componentType: Type<T>, assert = true): T {
+    return this.getDebugElementByDirective(componentType, assert).componentInstance as T;
   }
 
   /**
