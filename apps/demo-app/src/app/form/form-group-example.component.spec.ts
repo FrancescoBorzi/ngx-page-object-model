@@ -1,10 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  DebugHtmlElement,
-  PageObjectModel,
-  getFormControlOfDebugElement,
-  getFormGroupOfDebugElement,
-} from 'ngx-page-object-model';
+import { DebugHtmlElement, PageObjectModel, getFormGroupOfDebugElement } from 'ngx-page-object-model';
 
 import { FormGroupExampleComponent } from './form-group-example.component';
 import { CustomTextInputComponent } from './custom-text-input.component';

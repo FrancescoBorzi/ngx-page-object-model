@@ -6,12 +6,10 @@ import { ControlValueAccessor, FormControl, NgControl, ReactiveFormsModule } fro
   template: `
     <div>This is a custom input text!</div>
     <div>
-      <input [formControl]="control">
+      <input [formControl]="control" />
     </div>
   `,
-  imports: [
-    ReactiveFormsModule
-  ],
+  imports: [ReactiveFormsModule],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -39,6 +37,7 @@ export class CustomTextInputComponent implements ControlValueAccessor {
 
   // If you need to access the FormControl object from inside the component
   // It will be available in this.ngControl.control
+  // eslint-disable-next-line
   constructor(@Optional() @Self() public ngControl: NgControl) {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
@@ -81,5 +80,4 @@ export class CustomTextInputComponent implements ControlValueAccessor {
     // than your current internal component state
     // in order to optimise performances
   }
-
 }
