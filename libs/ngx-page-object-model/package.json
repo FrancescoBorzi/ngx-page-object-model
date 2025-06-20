@@ -1,6 +1,6 @@
 {
   "name": "ngx-page-object-model",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/core": ">=9.0.0",
     "@angular/forms": ">=9.0.0",
