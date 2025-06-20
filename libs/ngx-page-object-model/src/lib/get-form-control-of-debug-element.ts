@@ -2,7 +2,7 @@ import { AbstractControl, NgControl } from '@angular/forms';
 
 import { DebugHtmlElement } from './debug-html-element';
 
-export function getFormControlOfDebugElement<TValue = any, TRawValue extends TValue = TValue>(
+export function getFormControlOfDebugElement<TValue, TRawValue extends TValue = TValue>(
   debugElement: DebugHtmlElement,
   assert = true,
 ): AbstractControl<TValue, TRawValue> {
