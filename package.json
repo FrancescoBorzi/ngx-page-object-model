@@ -20,8 +20,8 @@
     "zone.js": "0.15.1"
   },
   "devDependencies": {
-    "@analogjs/vite-plugin-angular": "1.17.1",
-    "@analogjs/vitest-angular": "1.17.1",
+    "@analogjs/vite-plugin-angular": "1.18.0",
+    "@analogjs/vitest-angular": "1.18.0",
     "@angular-devkit/build-angular": "20.0.3",
     "@angular-devkit/core": "20.0.3",
     "@angular-devkit/schematics": "20.0.3",
