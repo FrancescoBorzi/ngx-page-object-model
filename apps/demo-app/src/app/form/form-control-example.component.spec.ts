@@ -34,4 +34,16 @@ describe(FormControlExampleComponent.name, () => {
 
     expect(formControl.value).toEqual('Custom initial value');
   });
+
+  it('should initialize a typed formControl and pass it to the <app-custom-text-input> component', () => {
+    const { page } = setup();
+    page.detectChanges();
+
+    // get the form control through the DOM
+    const customTextInput = page.customTextInput();
+    const formControl = getFormControlOfDebugElement<string>(customTextInput);
+
+    // the type of formControl?.value is string, so we can call .trim()
+    expect(formControl.value.trim()).toEqual('Custom initial value');
+  });
 });

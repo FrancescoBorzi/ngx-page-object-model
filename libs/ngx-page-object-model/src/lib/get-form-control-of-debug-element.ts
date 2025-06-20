@@ -2,7 +2,10 @@ import { AbstractControl, NgControl } from '@angular/forms';
 
 import { DebugHtmlElement } from './debug-html-element';
 
-export function getFormControlOfDebugElement(debugElement: DebugHtmlElement, assert = true): AbstractControl {
+export function getFormControlOfDebugElement<TValue = any, TRawValue extends TValue = TValue>(
+  debugElement: DebugHtmlElement,
+  assert = true,
+): AbstractControl<TValue, TRawValue> {
   let ngControl;
 
   try {
@@ -15,5 +18,5 @@ export function getFormControlOfDebugElement(debugElement: DebugHtmlElement, ass
     }
   }
 
-  return ngControl?.control as AbstractControl;
+  return ngControl?.control as AbstractControl<TValue, TRawValue>;
 }
