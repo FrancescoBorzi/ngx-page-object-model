@@ -1,8 +1,11 @@
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { AbstractControl, FormGroup, FormGroupDirective } from '@angular/forms';
 
 import { DebugHtmlElement } from './debug-html-element';
 
-export function getFormGroupOfDebugElement(debugElement: DebugHtmlElement, assert = true): FormGroup {
+export function getFormGroupOfDebugElement<T extends { [K in keyof T]: AbstractControl }>(
+  debugElement: DebugHtmlElement,
+  assert = true,
+): FormGroup<T> {
   let formGroupDirective;
 
   try {
@@ -15,5 +18,5 @@ export function getFormGroupOfDebugElement(debugElement: DebugHtmlElement, asser
     }
   }
 
-  return formGroupDirective?.form as FormGroup;
+  return formGroupDirective?.form as FormGroup<T>;
 }

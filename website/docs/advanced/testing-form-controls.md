@@ -146,6 +146,22 @@ describe(FormExampleComponent.name, () => {
 });
 ```
 
+You can also specify the expected type parameter of the `FormControl`:
+
+```typescript
+it('should initialize a typed formControl and pass it to the <app-custom-text-input> component', () => {
+  const { page } = setup();
+  page.detectChanges();
+
+  // get the form control through the DOM
+  const customTextInput = page.customTextInput();
+  const formControl = getFormControlOfDebugElement<string>(customTextInput);
+
+  // the type of formControl?.value is string, so we can call .trim()
+  expect(formControl.value.trim()).toEqual('Custom initial value');
+});
+```
+
 ### Working with FormGroup: getFormGroupOfDebugElement()
 
 Similarly, you may want to get the [FormGroup](https://angular.dev/api/forms/FormGroup) object bound to a `<form>` HTML Element, for example:
@@ -178,6 +194,24 @@ it('should initialize a formGroup with a formControl inside it and pass it to th
 
   expect(formControl).toBeTruthy();
   expect(formControl?.value).toEqual('Custom initial value');
+});
+```
+
+You can also specify the expected type parameter of the `FormGroup`:
+
+```typescript
+it('should initialize a typed formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', () => {
+  const { page } = setup();
+  page.detectChanges();
+
+  // get the form group through the DOM
+  const myFormHtmlElement = page.myFormGroup();
+  const formGroup = getFormGroupOfDebugElement<{ myControl: FormControl<string> }>(myFormHtmlElement);
+  const formControl = formGroup.get('myControl');
+
+  expect(formControl).toBeTruthy();
+  // the type of formControl?.value is string, so we can call .trim()
+  expect(formControl?.value.trim()).toEqual('Custom initial value');
 });
 ```
 
