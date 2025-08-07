@@ -3,7 +3,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/FrancescoBorzi/ngx-page-object-model/badge)](https://www.codefactor.io/repository/github/FrancescoBorzi/ngx-page-object-model)
 [![Actions Status](https://github.com/FrancescoBorzi/ngx-page-object-model/workflows/CI/badge.svg)](https://github.com/FrancescoBorzi/ngx-page-object-model/actions)
 <a href="https://www.paypal.me/francesco92dev" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-![NPM Downloads](https://img.shields.io/npm/dw/ngx-page-object-model)
+<a href="https://www.npmjs.com/package/ngx-page-object-model" target="_blank"><img src="https://img.shields.io/npm/dw/ngx-page-object-model"></a>
 
 ngx-page-object-model is a lightweight library designed to simplify writing [unit tests for Angular UI Components](https://javascript.plainenglish.io/component-dom-testing-in-angular-0d2256414c06) by leveraging the [Page Object Model (POM) design pattern](https://martinfowler.com/bliki/PageObject.html).
 
