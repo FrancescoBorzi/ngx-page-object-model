@@ -14,6 +14,6 @@
  *
  * @param delayMs Time to wait in milliseconds (default 0)
  */
-export function tickAsync(delayMs: number = 0): Promise<void> {
+export function tickAsync(delayMs = 0): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, delayMs));
 }
