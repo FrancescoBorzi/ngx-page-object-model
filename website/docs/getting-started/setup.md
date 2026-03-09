@@ -34,7 +34,9 @@ import { Component, computed, signal } from '@angular/core';
 export class MinimalComponent {
   private readonly clicked = signal<boolean>(false);
 
-  protected readonly clickedStatusText = computed(() => (this.clicked() ? 'Clicked!' : 'Not yet clicked'));
+  protected readonly clickedStatusText = computed(() =>
+    this.clicked() ? 'Clicked!' : 'Not yet clicked',
+  );
 
   protected onButtonClick(): void {
     this.clicked.set(true);
@@ -67,7 +69,9 @@ describe(MinimalComponent.name, () => {
     it('should display a "Not yet clicked" text', async () => {
       await fixture.whenStable();
 
-      expect(fixture.debugElement.query(By.css('span')).nativeElement.textContent).toContain('Not yet clicked');
+      expect(fixture.debugElement.query(By.css('span')).nativeElement.textContent).toContain(
+        'Not yet clicked',
+      );
     });
   });
 

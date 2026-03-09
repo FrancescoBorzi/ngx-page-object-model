@@ -26,7 +26,7 @@ describe(MyComponent.name, () => {
     // ...
     detectChanges: false,
   });
-  
+
   const setup = () => {
     const spectator = createComponent('<app-my-component />');
     const page = new Page(spectator.fixture);
@@ -48,7 +48,7 @@ it('should do something', () => {
   const { page, spectator } = setup();
 
   spectator.typeInElement('some text', page.myInputElement());
-  
+
   // ...
 });
 ```
@@ -57,7 +57,7 @@ This way, the page object and Spectator are completely decoupled and can be used
 
 ## Advanced custom setup: blended together
 
-Suppose that you want to create a more advanced utility by leveraging both the page object model and spectator together, 
+Suppose that you want to create a more advanced utility by leveraging both the page object model and spectator together,
 yet using just one `page` object to control everything, instead of mixing `page` and `spectator`
 
 This is possible by creating a custom base page object class that encapsulates the `spectator` object instead of just `spectator.fixture`:
@@ -70,7 +70,7 @@ export abstract class SpectatorPageObjectModel<ComponentType> extends PageObject
   constructor(public readonly spectator: Spectator<ComponentType> | SpectatorHost<ComponentType>) {
     super(spectator.fixture);
   }
-  
+
   // build custom utility methods
 }
 ```
@@ -79,7 +79,7 @@ Now we no longer need to pass the `spectator` object to our tests but we can sim
 
 This also allows building more complex utility methods that rely on Spectator's features.
 
-For example, suppose we want to create a method that takes as input a `<select>` element 
+For example, suppose we want to create a method that takes as input a `<select>` element
 and selects an option at a certain `index` having a certain `value`.
 We could build such a utility this way:
 
@@ -96,7 +96,11 @@ export abstract class SpectatorPageObject<ComponentType> extends PageObjectModel
     return `${index}: ${value}`;
   }
 
-  selectOption(element: HTMLSelectElement | DebugHtmlElement<HTMLSelectElement>, index: number, value: string): void {
+  selectOption(
+    element: HTMLSelectElement | DebugHtmlElement<HTMLSelectElement>,
+    index: number,
+    value: string,
+  ): void {
     const ngValue = this.getSelectNgValue(index, value);
 
     const optionElement = element.querySelector(`option[value="${ngValue}"]`);
@@ -116,7 +120,7 @@ We can then use such utility this way:
 import { createHostFactory } from '@ngneat/spectator';
 import { DebugHtmlElement } from 'ngx-page-object-model';
 
-import { SpectatorPageObject } from '../somewhere/spectator-page-object.ts'
+import { SpectatorPageObject } from '../somewhere/spectator-page-object.ts';
 
 describe(MyComponent.name, () => {
   class Page extends SpectatorPageObject<MyComponent> {
@@ -130,7 +134,7 @@ describe(MyComponent.name, () => {
     // ...
     detectChanges: false,
   });
-  
+
   const setup = () => {
     const spectator = createComponent('<app-my-component />');
 
@@ -144,7 +148,7 @@ describe(MyComponent.name, () => {
   it('should do something', () => {
     const { page } = setup();
 
-    // select option of mySelectElement at index 2 with value 'SomeValue' 
+    // select option of mySelectElement at index 2 with value 'SomeValue'
     page.selectOption(page.mySelectElement, 2, 'SomeValue');
 
     // ...

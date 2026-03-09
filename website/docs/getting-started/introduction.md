@@ -16,7 +16,7 @@ This approach is known as [Component DOM Testing](https://javascript.plainenglis
 
 ## What is the Page Object Model design pattern?
 
-The **Page Object Model (POM)** is a technique that separates test logic from DOM interactions, 
+The **Page Object Model (POM)** is a technique that separates test logic from DOM interactions,
 creating an abstraction layer for cleaner, more readable, and maintainable test code.
 
 ### Wait... weren't Page Objects something used in e2e tests?
@@ -27,10 +27,10 @@ The name "Page Object" can be misleading, as it doesn't necessarily refer to an 
 
 _From [Martin Flower's definition of Page Object](https://martinfowler.com/bliki/PageObject.html):_
 
-> There's an argument here that the name “page object” is misleading because it makes you think you should have just one page object per page. 
+> There's an argument here that the name “page object” is misleading because it makes you think you should have just one page object per page.
 > Something like “panel object” would be better - but the term “page object” is what's become accepted.
 
-When creating page objects for Angular UI components, you typically create just one small page object per component inside its own `.spec.ts` file. 
+When creating page objects for Angular UI components, you typically create just one small page object per component inside its own `.spec.ts` file.
 
 ## The ngx-page-object-model library
 
