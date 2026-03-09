@@ -26,17 +26,13 @@ describe(ToggleStyleComponent.name, () => {
       const containerClass = this.textContainer().nativeElement.classList;
       expect(containerClass).toContain('light');
       expect(containerClass).not.toContain('dark');
-      expect(this.toggleButton().nativeElement.textContent).toContain(
-        'Switch to Dark Mode',
-      );
+      expect(this.toggleButton().nativeElement.textContent).toContain('Switch to Dark Mode');
     }
     expectDarkModeActive(): void {
       const containerClass = this.textContainer().nativeElement.classList;
       expect(containerClass).toContain('dark');
       expect(containerClass).not.toContain('light');
-      expect(this.toggleButton().nativeElement.textContent).toContain(
-        'Switch to Light Mode',
-      );
+      expect(this.toggleButton().nativeElement.textContent).toContain('Switch to Light Mode');
     }
   }
 

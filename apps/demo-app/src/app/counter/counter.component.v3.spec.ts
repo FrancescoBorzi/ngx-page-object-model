@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { CounterComponent } from './counter.component';
-import {DebugHtmlElement, PageObjectModel} from "ngx-page-object-model";
+import { DebugHtmlElement, PageObjectModel } from 'ngx-page-object-model';
 
 describe('CounterComponent - Component DOM testing with Page Object', () => {
-
   class CounterPage extends PageObjectModel<CounterComponent> {
     // methods to retrieve the elements
     getIncreaseButton(): DebugHtmlElement<HTMLButtonElement> {

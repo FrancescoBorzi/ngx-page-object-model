@@ -52,9 +52,7 @@ describe(ToggleStyleComponent.name, () => {
 
       expect(textContainer.nativeElement.classList).toContain('light');
       expect(textContainer.nativeElement.classList).not.toContain('dark');
-      expect(toggleButton.nativeElement.textContent).toContain(
-        'Switch to Dark Mode',
-      );
+      expect(toggleButton.nativeElement.textContent).toContain('Switch to Dark Mode');
     });
 
     it('should switch to Dark Mode after clicking the button', async () => {
@@ -84,9 +82,7 @@ describe(ToggleStyleComponent.name, () => {
 
       expect(textContainer.nativeElement.classList).toContain('dark');
       expect(textContainer.nativeElement.classList).not.toContain('light');
-      expect(toggleButton.nativeElement.textContent).toContain(
-        'Switch to Light Mode',
-      );
+      expect(toggleButton.nativeElement.textContent).toContain('Switch to Light Mode');
     });
 
     it('should switch to Light Mode after clicking the button', async () => {
