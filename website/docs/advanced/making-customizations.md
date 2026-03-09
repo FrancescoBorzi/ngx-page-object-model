@@ -17,7 +17,7 @@ import { DebugHtmlElement, PageObjectModel } from 'ngx-page-object-model';
 export abstract class CustomBasePO<ComponentType> extends PageObjectModel<ComponentType> {
   someCommonElement(): DebugHtmlElement<HTMLButtonElement> {
     return this.getDebugElementByTestId('some-common-button');
-  } 
+  }
 }
 ```
 
@@ -64,4 +64,3 @@ class Page extends CustomBasePO<MyComponent> {
   // ...
 }
 ```
-

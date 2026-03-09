@@ -17,7 +17,9 @@ As you may have noticed, either `private` or `protected` are always used in the 
 export class MinimalComponent {
   private readonly clicked = signal<boolean>(false);
 
-  protected readonly clickedStatusText = computed(() => (this.clicked() ? 'Clicked!' : 'Not yet clicked'));
+  protected readonly clickedStatusText = computed(() =>
+    this.clicked() ? 'Clicked!' : 'Not yet clicked',
+  );
 
   protected onButtonClick(): void {
     this.clicked.set(true);

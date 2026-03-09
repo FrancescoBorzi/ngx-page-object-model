@@ -8,7 +8,7 @@ Using common CSS selectors to find elements in automation testing is not the bes
 They are prone to change over time due to evolving software requirements and implementation details.
 Automation testing should not rely on such selectors.
 
-Developers can accidentally break tests by simply changing a `<span>` to a `<div>` or altering some CSS classes or IDs, 
+Developers can accidentally break tests by simply changing a `<span>` to a `<div>` or altering some CSS classes or IDs,
 without realizing that tests were relying on those.
 
 A good approach that is widely accepted best practice in automation testing is to use a specific `data-testid` attribute.
@@ -18,6 +18,7 @@ So instead of doing:
 ```html
 <button class="btn btn-primary">Click me</button>
 ```
+
 ```typescript
 class Page extends PageObjectModel<MyComponent> {
   mainButton(): DebugHtmlElement<HTMLButtonElement> {
@@ -31,6 +32,7 @@ Do this:
 ```html
 <button class="btn btn-primary" data-testid="main-button">Click me</button>
 ```
+
 ```typescript
 class Page extends PageObjectModel<MyComponent> {
   mainButton(): DebugHtmlElement<HTMLButtonElement> {
