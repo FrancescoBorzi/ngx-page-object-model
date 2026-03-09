@@ -24,9 +24,9 @@ beforeEach(async () => {
   myService = TestBed.inject(MyService);
 });
 
-it('should do something', () => {
+it('should do something', async () => {
   spyOn(myService, 'someMethod').and.returnValue(MOCK_OBJECT);
-  page.detectChanges();
+  await page.fixture.whenStable();
 
   // ...
 });
@@ -55,10 +55,10 @@ const setup = () => {
   return { page, myService };
 };
 
-it('should do something', () => {
+it('should do something', async () => {
   const { page, myService } = setup();
   spyOn(myService, 'someMethod').and.returnValue(MOCK_OBJECT);
-  page.detectChanges();
+  await page.fixture.whenStable();
 
   // ...
 });
@@ -71,7 +71,7 @@ This opens up the possibility of passing an optional `config` object parameter c
 The optional `config` object can be especially useful when testing a Component with some inputs:
 
 ```typescript
-const setup = (config: { param1?: string, param2?: string } = {}) => {
+const setup = (config: { param1?: string; param2?: string } = {}) => {
   const param1 = config.param1 ?? 'defaultParam1Value';
   const param2 = config.param2 ?? 'defaultParam2Value';
 
@@ -79,16 +79,16 @@ const setup = (config: { param1?: string, param2?: string } = {}) => {
 
   // setting the [textValue] input of MyComponent with the value of param1
   page.fixture.componentRef.setInput('textValue', param1);
-  
+
   const myService = TestBed.inject(MyService);
- 
+
   // setting the returned value of myservice.getText() with the value of param2
   spyOn(myService, 'getText').and.returnValue(param2);
-  
+
   // ...
-  
+
   return { page, myService };
-}
+};
 ```
 
 Now tests can optionally use such parameters or any combination of them:

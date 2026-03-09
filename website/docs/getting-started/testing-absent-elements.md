@@ -10,8 +10,8 @@ However, sometimes we do want to look for specific elements that we expect not t
 
 ### Toggle Component Example
 
-Consider the following example. 
-A component featuring a toggle button that, when clicked, shows/hides some text. 
+Consider the following example.
+A component featuring a toggle button that, when clicked, shows/hides some text.
 
 ```typescript
 @Component({
@@ -21,10 +21,10 @@ A component featuring a toggle button that, when clicked, shows/hides some text.
     @if (visible()) {
       <div>Toggled content</div>
     }
-  `
+  `,
 })
 export class ToggleTextComponent {
-  protected readonly visible =  signal<boolean>(false);
+  protected readonly visible = signal<boolean>(false);
 
   protected onToggleClick(): void {
     this.visible.set(!this.visible());
@@ -42,8 +42,8 @@ text(): DebugHtmlElement<HTMLDivElement> {
 
 ```typescript
 describe('when initialized', () => {
-  it('should not display the text content', () => {
-    page.detectChanges();
+  it('should not display the text content', async () => {
+    await page.fixture.whenStable();
 
     expect(page.text()).toBeFalsy(); // This would error!
   });
@@ -70,8 +70,8 @@ This way, if (**and only if**) in a specific test case we expect the element not
 
 ```typescript
 describe('when initialized', () => {
-  it('should not display the text content', () => {
-    page.detectChanges();
+  it('should not display the text content', async () => {
+    await page.fixture.whenStable();
 
     expect(page.text(false)).toBeFalsy();
   });
@@ -100,7 +100,7 @@ import { DebugHtmlElement, PageObjectModel } from 'ngx-page-object-model';
 
 describe(ToggleTextComponent.name, () => {
   class ToggleTextComponentPOM extends PageObjectModel<ToggleTextComponent> {
-    // always expected to be there, no need to pass "assert" 
+    // always expected to be there, no need to pass "assert"
     toggleButton(): DebugHtmlElement<HTMLButtonElement> {
       return this.getDebugElementByCss('button');
     }
@@ -126,21 +126,21 @@ describe(ToggleTextComponent.name, () => {
   });
 
   describe('when initialized', () => {
-    it('should not display the text content', () => {
-      page.detectChanges();
+    it('should not display the text content', async () => {
+      await page.fixture.whenStable();
 
       expect(page.text(false)).toBeFalsy();
     });
   });
 
   describe('when the user clicks the button', () => {
-    it('should toggle the text content', () => {
+    it('should toggle the text content', async () => {
       page.clickButton();
-      page.detectChanges();
+      await page.fixture.whenStable();
       expect(page.text().nativeElement.textContent).toContain('Toggled content');
 
       page.clickButton();
-      page.detectChanges();
+      await page.fixture.whenStable();
       expect(page.text(false)).toBeFalsy();
     });
   });

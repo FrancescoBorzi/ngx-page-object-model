@@ -15,17 +15,17 @@ describe(MinimalComponent.name, () => {
   });
 
   describe('when initialized', () => {
-    it('should display a "Not yet clicked" text', () => {
-      fixture.detectChanges();
+    it('should display a "Not yet clicked" text', async () => {
+      await fixture.whenStable();
 
       expect(fixture.debugElement.query(By.css('span')).nativeElement.textContent).toContain('Not yet clicked');
     });
   });
 
   describe('when the user clicks the button', () => {
-    it('should display a "Clicked!" text', () => {
+    it('should display a "Clicked!" text', async () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
-      fixture.detectChanges();
+      await fixture.whenStable();
 
       expect(fixture.debugElement.query(By.css('span')).nativeElement.textContent).toContain('Clicked!');
     });

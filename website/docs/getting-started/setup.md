@@ -18,25 +18,23 @@ Now you are ready to write tests!
 
 Let's consider a minimalistic example with a small component featuring:
 
-- A text that initially says "_Not yet clicked_" 
+- A text that initially says "_Not yet clicked_"
 - A button that, once clicked, sets the status to "_Clicked!_"
 
 ```typescript
-import { Component, computed, signal, } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-minimal',
   template: `
     <button (click)="onButtonClick()">Click me</button>
     <span>Status: {{ clickedStatusText() }}</span>
-  `
+  `,
 })
 export class MinimalComponent {
-  private readonly clicked =  signal<boolean>(false);
+  private readonly clicked = signal<boolean>(false);
 
-  protected readonly clickedStatusText = computed(
-    () => this.clicked() ? 'Clicked!' : 'Not yet clicked',
-  );
+  protected readonly clickedStatusText = computed(() => (this.clicked() ? 'Clicked!' : 'Not yet clicked'));
 
   protected onButtonClick(): void {
     this.clicked.set(true);
@@ -66,17 +64,17 @@ describe(MinimalComponent.name, () => {
   });
 
   describe('when initialized', () => {
-    it('should display a "Not yet clicked" text', () => {
-      fixture.detectChanges();
+    it('should display a "Not yet clicked" text', async () => {
+      await fixture.whenStable();
 
       expect(fixture.debugElement.query(By.css('span')).nativeElement.textContent).toContain('Not yet clicked');
     });
   });
 
   describe('when the user clicks the button', () => {
-    it('should display a "Clicked!" text', () => {
+    it('should display a "Clicked!" text', async () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
-      fixture.detectChanges();
+      await fixture.whenStable();
 
       expect(fixture.debugElement.query(By.css('span')).nativeElement.textContent).toContain('Clicked!');
     });
@@ -91,6 +89,7 @@ This works and all tests pass. However, there are a couple of things that are no
 - The type of `nativeElement` is `any`, which doesn't provide type safety
 
 Furthermore, if we made a typo in the CSS selector, we would get an ugly error such as:
+
 > Cannot read properties of null (reading 'nativeElement')
 
 Such developer-unfriendly errors can be hard to debug in the case of a larger test, especially when multiple HTML elements are involved.
@@ -152,30 +151,30 @@ Let's consider a few points.
 The `page` object is of type `MinimalComponentPOM` which extends `PageObjectModel<MinimalComponent>`
 
 In general, the constructor of `PageObjectModel<ComponentType>` takes as input a `fixture` of type `ComponentFixture<ComponentType>`, which is exactly what `TestBed.createComponent(ComponentType)` returns.
-There is no magic involved here; `ngx-page-object-model` is just wrapping around what Angular is already providing us. 
+There is no magic involved here; `ngx-page-object-model` is just wrapping around what Angular is already providing us.
 
 Let's now use the `page` object to rewrite our unit tests:
 
 ```typescript
 describe('when initialized', () => {
-  it('should display a "Not yet clicked" text', () => {
-    page.detectChanges();
+  it('should display a "Not yet clicked" text', async () => {
+    await page.fixture.whenStable();
 
     expect(page.getCurrentText()).toContain('Not yet clicked');
   });
 });
 
 describe('when the user clicks the button', () => {
-  it('should display a "Clicked!" text', () => {
+  it('should display a "Clicked!" text', async () => {
     page.clickButton();
-    page.detectChanges();
+    await page.fixture.whenStable();
 
     expect(page.getCurrentText()).toContain('Clicked!');
   });
 });
 ```
 
-Our unit tests now look much cleaner and more readable! 
+Our unit tests now look much cleaner and more readable!
 
 - all the code responsible for the access and manipulation of the DOM is gone
 - we have better type safety

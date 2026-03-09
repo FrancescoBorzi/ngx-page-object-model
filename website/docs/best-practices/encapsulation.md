@@ -12,14 +12,12 @@ As you may have noticed, either `private` or `protected` are always used in the 
   template: `
     <button (click)="onButtonClick()">Click me</button>
     <span>Status: {{ clickedStatusText() }}</span>
-  `
+  `,
 })
 export class MinimalComponent {
   private readonly clicked = signal<boolean>(false);
 
-  protected readonly clickedStatusText = computed(
-    () => this.clicked() ? 'Clicked!' : 'Not yet clicked',
-  );
+  protected readonly clickedStatusText = computed(() => (this.clicked() ? 'Clicked!' : 'Not yet clicked'));
 
   protected onButtonClick(): void {
     this.clicked.set(true);
@@ -32,6 +30,7 @@ In case you missed it, since [Angular 14+](https://blog.angular.dev/angular-v14-
 Since this change, there are only a few (not frequent) cases where you need to leave any class member `public` (that is the default accessor in TypeScript).
 
 It is a good practice to always keep your class attributes and methods either:
+
 - `private` by default
 - `protected` when they need to be accessed by the template
 
@@ -53,13 +52,13 @@ If we wanted to do an analogy, this is similar to calling only the `public` meth
 
 ```typescript
 describe('when the user clicks the button', () => {
-    it('should display a "Clicked!" text', () => {
-      component.onButtonClick(); // this is not really "the user" clicking the button, is it?
-      page.detectChanges();
+  it('should display a "Clicked!" text', async () => {
+    component.onButtonClick(); // this is not really "the user" clicking the button, is it?
+    await page.fixture.whenStable();
 
-      expect(page.getCurrentText()).toContain('Clicked!');
-    });
+    expect(page.getCurrentText()).toContain('Clicked!');
   });
+});
 ```
 
 This test would not catch a bug affecting the HTML template of the Component. Setting the `onButtonClick()` method to `protected` would even prevent such a bad test from being written in the first place.
@@ -68,13 +67,13 @@ This test would not catch a bug affecting the HTML template of the Component. Se
 
 ```typescript
 describe('when the user clicks the button', () => {
-    it('should display a "Clicked!" text', () => {
-      page.clickButton();
-      page.detectChanges();
+  it('should display a "Clicked!" text', async () => {
+    page.clickButton();
+    await page.fixture.whenStable();
 
-      expect(page.getCurrentText()).toContain('Clicked!');
-    });
+    expect(page.getCurrentText()).toContain('Clicked!');
   });
+});
 ```
 
 If a bug is introduced in the button clicking mechanism, either in the component class or template, this test will do its job and warn us about it!
