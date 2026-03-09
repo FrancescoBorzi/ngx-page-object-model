@@ -25,9 +25,9 @@ describe(FormGroupExampleComponent.name, () => {
     return { page };
   };
 
-  it('should initialize a formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', () => {
+  it('should initialize a formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', async () => {
     const { page } = setup();
-    page.detectChanges();
+    await page.fixture.whenStable();
 
     // get the form group through the DOM
     const myFormHtmlElement = page.myFormGroup();
@@ -38,9 +38,9 @@ describe(FormGroupExampleComponent.name, () => {
     expect(formControl?.value).toEqual('Custom initial value');
   });
 
-  it('should initialize a typed formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', () => {
+  it('should initialize a typed formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', async () => {
     const { page } = setup();
-    page.detectChanges();
+    await page.fixture.whenStable();
 
     // get the form group through the DOM
     const myFormHtmlElement = page.myFormGroup();

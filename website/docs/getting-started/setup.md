@@ -66,17 +66,17 @@ describe(MinimalComponent.name, () => {
   });
 
   describe('when initialized', () => {
-    it('should display a "Not yet clicked" text', () => {
-      fixture.detectChanges();
+    it('should display a "Not yet clicked" text', async () => {
+      await fixture.whenStable();
 
       expect(fixture.debugElement.query(By.css('span')).nativeElement.textContent).toContain('Not yet clicked');
     });
   });
 
   describe('when the user clicks the button', () => {
-    it('should display a "Clicked!" text', () => {
+    it('should display a "Clicked!" text', async () => {
       fixture.debugElement.query(By.css('button')).nativeElement.click();
-      fixture.detectChanges();
+      await fixture.whenStable();
 
       expect(fixture.debugElement.query(By.css('span')).nativeElement.textContent).toContain('Clicked!');
     });
@@ -158,17 +158,17 @@ Let's now use the `page` object to rewrite our unit tests:
 
 ```typescript
 describe('when initialized', () => {
-  it('should display a "Not yet clicked" text', () => {
-    page.detectChanges();
+  it('should display a "Not yet clicked" text', async () => {
+    await page.fixture.whenStable();
 
     expect(page.getCurrentText()).toContain('Not yet clicked');
   });
 });
 
 describe('when the user clicks the button', () => {
-  it('should display a "Clicked!" text', () => {
+  it('should display a "Clicked!" text', async () => {
     page.clickButton();
-    page.detectChanges();
+    await page.fixture.whenStable();
 
     expect(page.getCurrentText()).toContain('Clicked!');
   });

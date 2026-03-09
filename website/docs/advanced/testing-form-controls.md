@@ -88,9 +88,9 @@ class Page extends PageObjectModel<FormExampleComponent> {
 Now, in the test, use it to get such element and then use the `getFormControlOfDebugElement()` method provided by the `ngx-page-object-model` library to get the `formControl` bound to it:
 
 ```typescript
-it('should initialize a formControl and pass it to the <app-custom-text-input> component', () => {
+it('should initialize a formControl and pass it to the <app-custom-text-input> component', async () => {
   const { page } = setup();
-  page.detectChanges();
+  await page.fixture.whenStable();
 
   // get the form control through the DOM
   const customTextInput = page.customTextInput();
@@ -133,9 +133,9 @@ describe(FormExampleComponent.name, () => {
     return { page };
   };
 
-  it('should initialize a formControl and pass it to the <app-custom-text-input> component', () => {
+  it('should initialize a formControl and pass it to the <app-custom-text-input> component', async () => {
     const { page } = setup();
-    page.detectChanges();
+    await page.fixture.whenStable();
 
     // get the form control through the DOM
     const customTextInput = page.customTextInput();
@@ -149,9 +149,9 @@ describe(FormExampleComponent.name, () => {
 You can also specify the expected type parameter of the `FormControl`:
 
 ```typescript
-it('should initialize a typed formControl and pass it to the <app-custom-text-input> component', () => {
+it('should initialize a typed formControl and pass it to the <app-custom-text-input> component', async () => {
   const { page } = setup();
-  page.detectChanges();
+  await page.fixture.whenStable();
 
   // get the form control through the DOM
   const customTextInput = page.customTextInput();
@@ -183,9 +183,9 @@ class Page extends PageObjectModel<FormGroupExampleComponent> {
 ```
 
 ```typescript
-it('should initialize a formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', () => {
+it('should initialize a formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', async () => {
   const { page } = setup();
-  page.detectChanges();
+  await page.fixture.whenStable();
 
   // get the form group through the DOM
   const myFormHtmlElement = page.myFormGroup();
@@ -200,9 +200,9 @@ it('should initialize a formGroup with a formControl inside it and pass it to th
 You can also specify the expected type parameter of the `FormGroup`:
 
 ```typescript
-it('should initialize a typed formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', () => {
+it('should initialize a typed formGroup with a formControl inside it and pass it to the <app-custom-text-input> component', async () => {
   const { page } = setup();
-  page.detectChanges();
+  await page.fixture.whenStable();
 
   // get the form group through the DOM
   const myFormHtmlElement = page.myFormGroup();

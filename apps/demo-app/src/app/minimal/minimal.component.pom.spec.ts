@@ -34,17 +34,17 @@ describe(MinimalComponent.name, () => {
   });
 
   describe('when initialized', () => {
-    it('should display a "Not yet clicked" text', () => {
-      page.detectChanges();
+    it('should display a "Not yet clicked" text', async () => {
+      await page.fixture.whenStable();
 
       expect(page.getCurrentText()).toContain('Not yet clicked');
     });
   });
 
   describe('when the user clicks the button', () => {
-    it('should display a "Clicked!" text', () => {
+    it('should display a "Clicked!" text', async () => {
       page.clickButton();
-      page.detectChanges();
+      await page.fixture.whenStable();
 
       expect(page.getCurrentText()).toContain('Clicked!');
     });

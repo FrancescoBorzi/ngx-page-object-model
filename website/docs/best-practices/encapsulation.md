@@ -53,9 +53,9 @@ If we wanted to do an analogy, this is similar to calling only the `public` meth
 
 ```typescript
 describe('when the user clicks the button', () => {
-    it('should display a "Clicked!" text', () => {
+    it('should display a "Clicked!" text', async () => {
       component.onButtonClick(); // this is not really "the user" clicking the button, is it?
-      page.detectChanges();
+      await page.fixture.whenStable();
 
       expect(page.getCurrentText()).toContain('Clicked!');
     });
@@ -68,9 +68,9 @@ This test would not catch a bug affecting the HTML template of the Component. Se
 
 ```typescript
 describe('when the user clicks the button', () => {
-    it('should display a "Clicked!" text', () => {
+    it('should display a "Clicked!" text', async () => {
       page.clickButton();
-      page.detectChanges();
+      await page.fixture.whenStable();
 
       expect(page.getCurrentText()).toContain('Clicked!');
     });

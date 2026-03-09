@@ -101,12 +101,6 @@ queryAll<T extends HTMLElement>(selector: string): T[];
 
 ## Other methods
 
-#### detectChanges
- * Calls fixture.detectChanges()
-```typescript
-detectChanges(): void;
-```
-
 #### removeNativeElement
  * Removes the HTML element of the component from the DOM.
 ```typescript

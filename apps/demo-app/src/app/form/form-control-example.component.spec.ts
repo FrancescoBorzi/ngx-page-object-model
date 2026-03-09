@@ -24,9 +24,9 @@ describe(FormControlExampleComponent.name, () => {
     return { page };
   };
 
-  it('should initialize a formControl and pass it to the <app-custom-text-input> component', () => {
+  it('should initialize a formControl and pass it to the <app-custom-text-input> component', async () => {
     const { page } = setup();
-    page.detectChanges();
+    await page.fixture.whenStable();
 
     // get the form control through the DOM
     const customTextInput = page.customTextInput();
@@ -35,9 +35,9 @@ describe(FormControlExampleComponent.name, () => {
     expect(formControl.value).toEqual('Custom initial value');
   });
 
-  it('should initialize a typed formControl and pass it to the <app-custom-text-input> component', () => {
+  it('should initialize a typed formControl and pass it to the <app-custom-text-input> component', async () => {
     const { page } = setup();
-    page.detectChanges();
+    await page.fixture.whenStable();
 
     // get the form control through the DOM
     const customTextInput = page.customTextInput();

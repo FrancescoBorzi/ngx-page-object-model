@@ -24,9 +24,9 @@ beforeEach(async () => {
   myService = TestBed.inject(MyService);
 });
 
-it('should do something', () => {
+it('should do something', async () => {
   spyOn(myService, 'someMethod').and.returnValue(MOCK_OBJECT);
-  page.detectChanges();
+  await page.fixture.whenStable();
 
   // ...
 });
@@ -55,10 +55,10 @@ const setup = () => {
   return { page, myService };
 };
 
-it('should do something', () => {
+it('should do something', async () => {
   const { page, myService } = setup();
   spyOn(myService, 'someMethod').and.returnValue(MOCK_OBJECT);
-  page.detectChanges();
+  await page.fixture.whenStable();
 
   // ...
 });

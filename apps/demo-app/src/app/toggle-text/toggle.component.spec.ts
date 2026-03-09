@@ -31,21 +31,21 @@ describe(ToggleTextComponent.name, () => {
   });
 
   describe('when initialized', () => {
-    it('should not display the text content', () => {
-      page.detectChanges();
+    it('should not display the text content', async () => {
+      await page.fixture.whenStable();
 
       expect(page.text(false)).toBeFalsy();
     });
   });
 
   describe('when the user clicks the button', () => {
-    it('should toggle the text content', () => {
+    it('should toggle the text content', async () => {
       page.clickButton();
-      page.detectChanges();
+      await page.fixture.whenStable();
       expect(page.text().nativeElement.textContent).toContain('Toggled content');
 
       page.clickButton();
-      page.detectChanges();
+      await page.fixture.whenStable();
       expect(page.text(false)).toBeFalsy();
     });
   });
