@@ -38,7 +38,7 @@
     "@nx/workspace": "22.6.4",
     "@schematics/angular": "21.2.6",
     "@swc-node/register": "1.11.1",
-    "@swc/core": "1.15.21",
+    "@swc/core": "1.15.24",
     "@swc/helpers": "0.5.21",
     "@types/node": "24.12.2",
     "@typescript-eslint/utils": "8.58.0",
