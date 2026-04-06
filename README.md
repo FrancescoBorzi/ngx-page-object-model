@@ -125,3 +125,18 @@ expect(page.getCount(false)).not.toBeDefined();
 ## Documentation
 
 - Check the [Documentation](https://francescoborzi.github.io/ngx-page-object-model) for more code examples, features and techniques.
+
+### Instructing AI Agents
+
+The documentation is automatically shipped in the library npm package, so AI Agents can easily find it.
+
+You can add the following to your Agent guidelines file:
+
+```markdown
+## Testing Guidelines for UI Components
+
+When writing unit tests for components, **always use the Page Object Model pattern** to separate test logic from DOM manipulation.
+
+The documentation of the ngx-page-object-model library can be found in `node_modules/ngx-page-object-model/docs/`.
+```
+
