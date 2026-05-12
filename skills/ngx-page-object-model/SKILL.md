@@ -1,6 +1,10 @@
 ---
 name: ngx-page-object-model
 description: Use this skill whenever working with Angular Component tests.
+license: MIT
+metadata:
+  author: Francesco Borzì
+  version: '1.0'
 ---
 
 # ngx-page-object-model — Angular component testing
