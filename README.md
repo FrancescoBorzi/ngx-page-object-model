@@ -140,3 +140,8 @@ When writing unit tests for components, **always use the Page Object Model patte
 The documentation of the ngx-page-object-model library can be found in `node_modules/ngx-page-object-model/docs/`.
 ```
 
+Or you can directly install the `ngx-page-object-model` skill using:
+
+```bash
+npx skills add https://github.com/FrancescoBorzi/ngx-page-object-model
+```
