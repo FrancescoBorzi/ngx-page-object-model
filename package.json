@@ -41,7 +41,7 @@
     "@swc-node/register": "1.11.1",
     "@swc/core": "1.15.33",
     "@swc/helpers": "0.5.21",
-    "@types/node": "24.12.2",
+    "@types/node": "24.12.4",
     "@typescript-eslint/utils": "8.59.2",
     "@vitest/coverage-v8": "4.1.5",
     "@vitest/ui": "4.1.5",
