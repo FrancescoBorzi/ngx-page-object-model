@@ -40,7 +40,7 @@
     "@schematics/angular": "21.2.12",
     "@swc-node/register": "1.11.1",
     "@swc/core": "1.15.40",
-    "@swc/helpers": "0.5.21",
+    "@swc/helpers": "0.5.22",
     "@types/node": "24.12.4",
     "@typescript-eslint/utils": "8.60.0",
     "@vitest/coverage-v8": "4.1.7",
