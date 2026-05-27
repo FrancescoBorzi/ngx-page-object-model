@@ -130,6 +130,58 @@ export abstract class PageObjectModel<ComponentType> {
   }
 
   /**
+   * DOM root used by the "outside fixture" query helpers.
+   *
+   * Defaults to the global `document`, so elements rendered outside the component's host
+   * (e.g. Angular CDK overlays appended to `document.body` — dialogs, menus, tooltips,
+   * snackbars) can be located.
+   *
+   * Override to scope queries, e.g. to a CDK overlay container element.
+   */
+  protected getRootOutsideFixture(): ParentNode {
+    return document;
+  }
+
+  /**
+   * Given a CSS selector, returns a native HTML element searched outside the component
+   * fixture (see getRootOutsideFixture).
+   * Takes an optional assert parameter which defaults to true.
+   */
+  queryOutsideFixture<T extends HTMLElement>(cssSelector: string, assert = true): T {
+    const element = this.getRootOutsideFixture().querySelector<T>(cssSelector);
+
+    if (assert && !element) {
+      throw new Error(`Element with selector "${cssSelector}" was not found outside the fixture.`);
+    }
+
+    return element as T;
+  }
+
+  /**
+   * Given a CSS selector, returns an array of all matching native HTML elements searched
+   * outside the component fixture (see getRootOutsideFixture).
+   */
+  queryAllOutsideFixture<T extends HTMLElement>(cssSelector: string): T[] {
+    return Array.from(this.getRootOutsideFixture().querySelectorAll<T>(cssSelector));
+  }
+
+  /**
+   * Given a data-testid, returns a native HTML element searched outside the component fixture.
+   * Takes an optional assert parameter which defaults to true.
+   */
+  queryOutsideFixtureByTestId<T extends HTMLElement>(testId: string, assert = true): T {
+    return this.queryOutsideFixture<T>(this.getSelectorByTestId(testId), assert);
+  }
+
+  /**
+   * Given a data-testid, returns an array of all matching native HTML elements searched
+   * outside the component fixture.
+   */
+  queryAllOutsideFixtureByTestId<T extends HTMLElement>(testId: string): T[] {
+    return this.queryAllOutsideFixture<T>(this.getSelectorByTestId(testId));
+  }
+
+  /**
    * Removes the HTML element of the component from the DOM.
    */
   removeNativeElement(): void {
