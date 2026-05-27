@@ -15,8 +15,8 @@ describe(OverlayDialogComponent.name, () => {
     dialogTitle(assert = true): HTMLElement {
       return this.queryOutsideFixtureByTestId('confirm-dialog-title', assert);
     }
-    dialogActions(assert = true): HTMLButtonElement[] {
-      return this.queryAllOutsideFixtureByTestId<HTMLButtonElement>('confirm-dialog-action', assert);
+    dialogActions(): HTMLButtonElement[] {
+      return this.queryAllOutsideFixtureByTestId<HTMLButtonElement>('confirm-dialog-action');
     }
 
     async openDialog(): Promise<void> {
@@ -41,7 +41,7 @@ describe(OverlayDialogComponent.name, () => {
     await page.fixture.whenStable();
 
     expect(page.dialogTitle(false)).toBeFalsy();
-    expect(page.dialogActions(false)).toBeFalsy();
+    expect(page.dialogActions()).toEqual([]);
   });
 
   it('throws a descriptive error when the overlay element is missing', async () => {
