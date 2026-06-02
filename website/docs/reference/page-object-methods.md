@@ -103,6 +103,50 @@ query<T extends HTMLElement>(cssSelector: string, assert = true): T;
 queryAll<T extends HTMLElement>(selector: string): T[];
 ```
 
+### Querying outside the fixture
+
+By default, all query methods are scoped to the component under test. Some elements render **outside**
+the component's host element — most commonly Angular CDK overlays (dialogs, menus, tooltips, snackbars)
+that attach to `document.body`. These elements have no `DebugElement` in the component's debug tree, so
+they can only be retrieved as native HTML elements.
+
+The search root defaults to the global `document` and can be customized by overriding
+`getRootOutsideFixture()` (see [Making customizations](../advanced/making-customizations.md)).
+
+#### queryOutsideFixture
+
+- Given a CSS selector, returns a native HTML element searched outside the component fixture.
+- Takes an optional assert parameter which defaults to true.
+
+```typescript
+queryOutsideFixture<T extends HTMLElement>(cssSelector: string, assert = true): T;
+```
+
+#### queryAllOutsideFixture
+
+- Given a CSS selector, returns an array of all matching native HTML elements outside the fixture.
+
+```typescript
+queryAllOutsideFixture<T extends HTMLElement>(cssSelector: string): T[];
+```
+
+#### queryOutsideFixtureByTestId
+
+- Given a data-testid, returns a native HTML element searched outside the component fixture.
+- Takes an optional assert parameter which defaults to true.
+
+```typescript
+queryOutsideFixtureByTestId<T extends HTMLElement>(testId: string, assert = true): T;
+```
+
+#### queryAllOutsideFixtureByTestId
+
+- Given a data-testid, returns an array of all matching native HTML elements outside the fixture.
+
+```typescript
+queryAllOutsideFixtureByTestId<T extends HTMLElement>(testId: string): T[];
+```
+
 ## Other methods
 
 #### removeNativeElement

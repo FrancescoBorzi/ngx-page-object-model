@@ -64,3 +64,25 @@ class Page extends CustomBasePO<MyComponent> {
   // ...
 }
 ```
+
+## Querying elements outside the fixture
+
+The `queryOutsideFixture` / `queryAllOutsideFixture` helpers (and their `*ByTestId` variants) search outside the component's host element — useful for Angular CDK overlays (dialogs, menus, tooltips, snackbars) that render into `document.body`.
+
+By default they search the whole `document`, which is enough for the common case: the component's own DOM is not attached to the live document during tests, while CDK overlays append themselves to `document.body`.
+
+In the rare case you need to narrow the search to a specific subtree, override `getRootOutsideFixture()` to return any `ParentNode`. For example, to scope strictly to the Angular CDK overlay container, inject `OverlayContainer` in your own base class. The `@angular/cdk` import stays in your code — the library itself has no CDK dependency:
+
+```typescript
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { TestBed } from '@angular/core/testing';
+import { PageObjectModel } from 'ngx-page-object-model';
+
+export abstract class OverlayAwarePO<ComponentType> extends PageObjectModel<ComponentType> {
+  protected override getRootOutsideFixture(): ParentNode {
+    return TestBed.inject(OverlayContainer).getContainerElement();
+  }
+}
+```
+
+**Note:** querying `document` can match nodes left over from a previous test if overlays are not disposed. Dispose overlays in `afterEach` (e.g. via the CDK `OverlayContainer` or the Material test harness).
