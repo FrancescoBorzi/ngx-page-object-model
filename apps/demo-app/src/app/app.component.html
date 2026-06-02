@@ -1,2 +1,19 @@
-<app-testing-demo-counter />
-<router-outlet></router-outlet>
+<header class="app-header">
+  <h1>ngx-page-object-model</h1>
+  <p>Demo components exercised by the library's tests.</p>
+</header>
+
+<main class="demo-grid">
+  @for (demo of demos; track demo.title) {
+    <section class="demo-card">
+      <h2 class="demo-card__title">{{ demo.title }}</h2>
+      <p class="demo-card__description">{{ demo.description }}</p>
+      <div class="demo-card__stage">
+        <ng-container
+          [ngComponentOutlet]="demo.component"
+          [ngComponentOutletInputs]="demo.inputs"
+        />
+      </div>
+    </section>
+  }
+</main>

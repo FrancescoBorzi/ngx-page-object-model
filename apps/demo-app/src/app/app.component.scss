@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 32px;
+
+  h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+
+  p {
+    margin: 4px 0 0;
+    color: #666;
+  }
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.demo-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+  &__title {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  // Fixed height keeps the stage starting at the same offset across cards,
+  // even when descriptions wrap to a different number of lines.
+  &__description {
+    margin: 4px 0 12px;
+    min-height: 34px;
+    color: #666;
+    font-size: 13px;
+  }
+
+  // Reserve room so interaction-revealed content (toggled text, status,
+  // etc.) has space to appear without resizing the card. Kept as a plain
+  // block so components relying on their own layout (e.g. the counter's
+  // self-centering wrapper) render as designed.
+  &__stage {
+    min-height: 180px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+  }
+}
