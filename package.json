@@ -43,7 +43,7 @@
     "@swc/core": "1.15.40",
     "@swc/helpers": "0.5.23",
     "@types/node": "24.12.4",
-    "@typescript-eslint/utils": "8.60.0",
+    "@typescript-eslint/utils": "8.60.1",
     "@vitest/coverage-v8": "4.1.7",
     "@vitest/ui": "4.1.7",
     "angular-eslint": "",
@@ -60,7 +60,7 @@
     "ts-node": "10.9.2",
     "tslib": "2.8.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.60.0",
+    "typescript-eslint": "8.60.1",
     "vite": "8.0.16",
     "vitest": "4.1.7"
   }
