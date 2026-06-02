@@ -21,6 +21,16 @@ import { ChangeDetectionStrategy, Component, inject, TemplateRef, viewChild, Vie
       </div>
     </ng-template>
   `,
+  styles: `
+    .dialog {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      padding: 24px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+  `,
 })
 export class OverlayDialogComponent {
   private readonly overlay = inject(Overlay);

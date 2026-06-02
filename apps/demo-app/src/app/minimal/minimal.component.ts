@@ -5,7 +5,12 @@ import { Component, computed, signal, } from '@angular/core';
   template: `
     <button (click)="onButtonClick()">Click me</button>
     <span>Status: {{ clickedStatusText() }}</span>
-  `
+  `,
+  styles: `
+    span {
+      margin-left: 12px;
+    }
+  `,
 })
 export class MinimalComponent {
   private readonly clicked =  signal<boolean>(false);
