@@ -55,7 +55,7 @@
     "nx": "22.7.5",
     "postcss": "8.5.15",
     "postcss-url": "10.1.4",
-    "prettier": "3.8.3",
+    "prettier": "3.8.4",
     "ts-node": "10.9.2",
     "tslib": "2.8.1",
     "typescript": "5.9.3",
