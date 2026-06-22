@@ -39,7 +39,7 @@
     "@nx/workspace": "23.0.0",
     "@schematics/angular": "21.2.16",
     "@swc-node/register": "1.11.1",
-    "@swc/core": "1.15.41",
+    "@swc/core": "1.15.43",
     "@swc/helpers": "0.5.23",
     "@types/node": "24.13.2",
     "@typescript-eslint/utils": "8.61.1",
