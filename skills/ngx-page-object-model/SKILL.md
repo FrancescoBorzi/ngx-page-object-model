@@ -4,7 +4,7 @@ description: MUST invoke before creating or editing any Angular component's test
 license: MIT
 metadata:
   author: Francesco Borzì
-  version: '1.1'
+  version: '1.2'
 ---
 
 # ngx-page-object-model — Angular component testing
@@ -131,6 +131,17 @@ const group = getFormGroupOfDebugElement(formEl);     // the FormGroup bound to 
 ```
 
 This extracts the control *through the DOM*, which means the test simultaneously verifies that the binding works. Reaching into the class would only verify that the constructor ran. For typed variants and the `getFormGroupOfDebugElement<{ field: FormControl<string> }>(...)` form, read `advanced/testing-form-controls.md`.
+
+## Verifying inputs passed to a child component
+
+To assert what the component under test passes *down* to a child, prefer the rendered DOM. When the value isn't observable there (an icon name, a `color`, a flag with no visible text), read it from the child's **public input** via the child's debug element — that input is the child's public API, not the component-under-test's internals:
+
+```typescript
+const emblem = page.getDebugElementByDirective(StatusEmblemComponent).componentInstance;
+expect(emblem.color()).toBe('warn'); // input bound by the parent
+```
+
+This stays forbidden for the component *under test*'s own instance — see "Forbidden patterns".
 
 ## Other utilities the library exports
 
