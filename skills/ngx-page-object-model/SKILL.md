@@ -4,7 +4,7 @@ description: MUST invoke before creating or editing any Angular component's test
 license: MIT
 metadata:
   author: Francesco Borzì
-  version: '1.2'
+  version: '1.3'
 ---
 
 # ngx-page-object-model — Angular component testing
@@ -90,7 +90,7 @@ Five non-obvious things this template encodes:
 
 1. **`Page` is a class**, not a bag of helpers. Element-access methods return `DebugHtmlElement<HTMLSomething>` so call sites get type-safe `nativeElement`.
 2. **Use `getDebugElementByTestId`** as the default lookup. CSS selectors are a fallback. The library throws descriptive errors (`Element with selector "..." was not found.`) instead of returning null — no null-checking required.
-3. **`setup()` is a function, not `beforeEach`.** Only TestBed configuration goes in `beforeEach`; all mutable per-test state is created in `setup()` and returned. This prevents order-dependent flakiness from accidentally leaked state.
+3. **`setup()` is a function, not `beforeEach`.** Only TestBed configuration goes in `beforeEach`; all mutable per-test state is created in `setup()` and returned. This prevents order-dependent flakiness from accidentally leaked state. Immutable shared fixtures (constant input data, sample objects) still belong inside the `describe` block, never at module scope, which pollutes the file's namespace.
 4. **Inputs go through `componentRef.setInput()`**, never by writing to a class property.
 5. **Assertions are on the DOM** (text content, attribute presence, element existence), never on signals or component properties.
 
