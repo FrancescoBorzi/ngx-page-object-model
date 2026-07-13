@@ -53,7 +53,7 @@
     "jsonc-eslint-parser": "3.1.0",
     "ng-packagr": "21.2.5",
     "nx": "23.0.2",
-    "postcss": "8.5.17",
+    "postcss": "8.5.18",
     "postcss-url": "10.1.4",
     "prettier": "3.9.5",
     "ts-node": "10.9.2",
