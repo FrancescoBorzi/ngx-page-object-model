@@ -38,7 +38,7 @@
     "@nx/web": "23.1.0",
     "@nx/workspace": "23.1.0",
     "@schematics/angular": "21.2.19",
-    "@swc-node/register": "1.11.1",
+    "@swc-node/register": "1.12.0",
     "@swc/core": "1.15.43",
     "@swc/helpers": "0.5.23",
     "@types/node": "24.13.3",
