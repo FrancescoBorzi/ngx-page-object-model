@@ -1,9 +1,34 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  "extends": ["config:recommended"],
+  "timezone": "Europe/Amsterdam",
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "schedule": ["after 6pm on friday"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "matchPackageNames": [
+        "@angular/**",
+        "@angular-devkit/**",
+        "@schematics/angular",
+        "@nx/**",
+        "nx"
+      ],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
   ],
-  "automerge": true,
-  "automergeType": "pr",
-  "platformAutomerge": true
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["after 6pm on friday"],
+    "automerge": true
+  }
 }
