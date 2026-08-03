@@ -4,7 +4,7 @@ description: MUST invoke before creating or editing any Angular component's test
 license: MIT
 metadata:
   author: Francesco Borzì
-  version: '1.4'
+  version: '1.5'
 ---
 
 # ngx-page-object-model — Angular component testing
@@ -135,11 +135,18 @@ This extracts the control *through the DOM*, which means the test simultaneously
 
 ## Verifying inputs passed to a child component
 
-To assert what the component under test passes *down* to a child, prefer the rendered DOM. When the value isn't observable there (an icon name, a `color`, a flag with no visible text), read it from the child's **public input** via the child's debug element — that input is the child's public API, not the component-under-test's internals:
+To assert what the component under test passes *down* to a child, prefer the rendered DOM. When the value isn't observable there (an icon name, a `color`, a flag with no visible text), read it from the child's **public input** via the child's debug element — that input is the child's public API, not the component-under-test's internals.
+
+The lookup belongs on the `Page`, never inline at the call site. Check the `Page` for an existing accessor first; never re-implement what a Page method already returns:
 
 ```typescript
-const emblem = page.getDebugElementByDirective(StatusEmblemComponent).componentInstance;
-expect(emblem.color()).toBe('warn'); // input bound by the parent
+class Page extends PageObjectModel<MyComponent> {
+  emblem(): StatusEmblemComponent {
+    return this.getDebugElementByDirective(StatusEmblemComponent).componentInstance;
+  }
+}
+
+expect(page.emblem().color()).toBe('warn'); // input bound by the parent
 ```
 
 This stays forbidden for the component *under test*'s own instance — see "Forbidden patterns".
