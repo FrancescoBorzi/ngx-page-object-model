@@ -19,6 +19,7 @@
         "@angular/**",
         "@angular-devkit/**",
         "@schematics/angular",
+        "ng-packagr",
         "@nx/**",
         "nx"
       ],
