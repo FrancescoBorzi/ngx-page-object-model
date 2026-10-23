@@ -1,10 +1,10 @@
 ---
 name: ngx-page-object-model
-description: MUST invoke before creating or editing any Angular component's tests (spec file). Enforces the Page Object Model pattern – tests drive components through the rendered DOM (their public contract) rather than reaching into component internals.
+description: MUST invoke before creating or editing any Angular component's tests (spec file), routes specs rendering through RouterTestingHarness included. Enforces the Page Object Model pattern – tests drive components through the rendered DOM (their public contract) rather than reaching into component internals.
 license: MIT
 metadata:
   author: Francesco Borzì
-  version: '1.5'
+  version: '1.6'
 ---
 
 # ngx-page-object-model — Angular component testing
@@ -94,6 +94,8 @@ Six non-obvious things this template encodes:
 4. **Inputs go through `componentRef.setInput()`**, never by writing to a class property.
 5. **Assertions are on the DOM** (text content, attribute presence, element existence), never on signals or component properties.
 6. **Flush change detection with `await page.fixture.whenStable()`**, not `page.detectChanges()`. It settles pending change detection and microtasks the way a zoneless app does at runtime; `detectChanges()` forces one synchronous pass that can miss async updates.
+
+A routes spec gets a Page too: `class Page extends PageObjectModel<unknown>`, built with `new Page(harness.fixture)` from a `RouterTestingHarness`; never query `harness.routeNativeElement` directly.
 
 ## When to read which doc
 
